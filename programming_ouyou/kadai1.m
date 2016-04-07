@@ -31,24 +31,86 @@ for i = 1:L
 	if (i == 1)
 		for j = 1:M
 			if (j == 1)
-				%aを定義
-				a = (j - 1) * L + (i - 1) + 1;
-				psai(a,1) = psai(a,1) .- a_2 * 100;
-				else if (1 < j < M)
-				%aを定義
-				a = (j - 1) * L + (i - 1) + 1;
-				p(a,a - L) = a_2;
-				p(a,a + L) = a_3;
-				else if (j == M)
-				%aを定義
-				a = (j - 1) * L + (i - 1) + 1;
-				psai(a,1) = psai(a,1) .- a_3 *100;
-				end
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_2 * 100;
+			else if (1 < j < M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			p(a,a - L) = a_2;
+			p(a,a + L) = a_3;
+			else (j == M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_3 *100;
+			endif
 			end
 		end
+	else if (1 < i < L)
+		for j = 1:M
+			if (j == 1)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_2 * 100;
+			else if (1 < j < M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			p(a,a - L) = a_2;
+			p(a,a + L) = a_3;
+			else (j == M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_3 *100;
+			endif
+			end
+		end
+	else (j == L)
+		for j = 1:M
+			if (j == 1)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_2 * 100;
+			else if (1 < j < M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			p(a,a - L) = a_2;
+			p(a,a + L) = a_3;
+			else (j == M)
+			%aを定義
+			a = (j - 1) * L + (i - 1) + 1;
+			psai(a,1) = psai(a,1) .- a_3 *100;
+			endif
+			end
+		end
+	endif
 	end
 end
-end
+
+
+
+
+%for i = 1:L
+%	if (i == 1)
+%		for j = 1:M
+%			if (j == 1)
+%				%aを定義
+%				a = (j - 1) * L + (i - 1) + 1;
+%				psai(a,1) = psai(a,1) .- a_2 * 100;
+%				else if (1 < j < M)
+%				%aを定義
+%				a = (j - 1) * L + (i - 1) + 1;
+%				p(a,a - L) = a_2;
+%				p(a,a + L) = a_3;
+%				else if (j == M)
+%				%aを定義
+%				a = (j - 1) * L + (i - 1) + 1;
+%				psai(a,1) = psai(a,1) .- a_3 *100;
+%				end
+%			end
+%		end
+%	end
+%end
+%end
 
 disp(p);
 disp(f);
