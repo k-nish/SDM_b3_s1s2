@@ -1,0 +1,39 @@
+##コミュニケーション技法B 第1週
+###論文検索方法(外部サイト)
+-web of science  
+http://ip-science.thomsonreuters.jp/products/web-of-science/
+
+-Google scholar  
+http://scholar.google.co.jp/
+
+-Elsevier  
+http://www.sciencedirect.com/
+
+-WILEY  
+http://onlinelibrary.wiley.com/
+
+-Springer b  
+http://www.springerlink.com/
+
+-Cambridge Journals  
+http://journals.cambridge.org/action/login
+
+-Oxford Journals  
+http://services.oxfordjournals.org/search.dtl
+
+###上記サイトへの学外からのアクセス方法
+http://www.ecc.u-tokyo.ac.jp/system/outside.html
+
+###論文検索方法(東大)
+-図書館  
+http://www.dl.itc.u-tokyo.ac.jp/sslvpn/use.html
+
+-MyOpac  
+http://opac.dl.itc-u-tokyo.ac.jp/myopac/
+
+-データベース・電子ジャーナル(一覧)  
+http://www.dl.itc.u-tokyo.ac.jp/sslvpn/use.html
+
+###日本語論文検索
+http://ci.nii.ac.jp/
+
