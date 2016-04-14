@@ -22,10 +22,10 @@ end
 %fを(M+1)*(L+1)のゼロ行列として作成
 f = zeros(M + 1,L + 1);
 %境界条件を設定
-f(:,1) = 0;
-f(M + 1,:) = 0;
-f(:,L + 1) = 100;
-f(1,:) = 100;
+%f(:,1) = 0;
+%f(M + 1,:) = 0;
+%f(:,L + 1) = 100;
+%f(1,:) = 100;
 
 
 %psaiをML*1のゼロ行列として作成
@@ -118,8 +118,11 @@ for i=1:L
 	endfor
 endfor
 
+f = inv(p) * psai;
+f = flipud(f);
+f = reshape(f(1:9),3,3);
+f = fliplr(f);
 
 disp(p);
 disp(f);
 disp(psai);
-
