@@ -147,7 +147,7 @@ Y(1,1) = psai(1,1);
 for k = 2:n
 	Y(k,1) = psai(k,1);
 	for i = 1:k
-		Y(k,1) = Y(k,1) - L(k,i).*Y(k,1);
+		Y(k,1) = Y(k,1) .- L(k,i).*Y(k,1);
 	endfor
 endfor
 
@@ -167,6 +167,6 @@ endfor
 
 %disp(p);
 %disp(f);
-%disp(psai);
+disp(psai);
 %disp(L);
 disp(Y);
