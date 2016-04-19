@@ -12,6 +12,11 @@ rotation axis:回転軸
 anomalous:異常な
 bulk:束
 forcibly:強制的に
+AC magnetic filed:交流磁界
+ferromagnetic:強磁性の
+specimen:標本
+exciter:励磁気
+attenuate:減衰させる
 
 ##内容
 ###introduction
