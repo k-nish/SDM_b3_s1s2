@@ -18,9 +18,6 @@ for i = 1: size(p)
 	p(i,i) = a_1;
 endfor
 
-%fを(M+1)*(L+1)のゼロ行列として作成
-f = zeros(M + 1,L + 1);
-
 %psaiをML*1のゼロ行列として作成
 psai = zeros(M * L,1);
 
