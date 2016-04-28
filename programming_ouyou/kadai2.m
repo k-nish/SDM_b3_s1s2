@@ -1,6 +1,6 @@
 %初期設定M,L,n
-M=11;
-L=11;
+M = 11;
+L = 11;
 n=M * L;
 dx = 0.1 / ( M + 1);
 dy = 0.1 / ( L + 1);
@@ -132,37 +132,47 @@ for i = 1:n
 	endfor
 endfor
 
-%LY=psaiを満たすYを求める
-%Yをn×1のゼロ行列として初期化
-Y = zeros(n,1);
+disp("L");
+disp(L);
+disp("U");
+disp(U);
+P = L * U;
+disp("L * U");
+disp(P);
+disp("p");
+disp(p);
 
-%Yを求める
-Y(1,1) = Y(1,1) .+ psai(1,1);
-for k = 2:n
-	Y(k,1) = psai(k,1);
-	for i = 1:k-1
-		Y(k,1) = Y(k,1) .- L(k,i).*Y(i,1);
-	endfor
-endfor
-
-%UX=Yを満たすXを求める
-%Xをn×1のゼロ行列として初期化
-X = zeros(n,1);
-
-%Xを求める
-X(n,1) = Y(n,1) ./ U(n,n);
-for k = 1:n-1
-	X(n - k,1) = Y(n - k,1);
-	for i = 0:k-1
-		X(n - k,1) = X(n - k,1) - U(n - k,n - i).*X(n - i,1);
-	endfor
-	X(n - k,1) = X(n - k,1)./U(n - k,n - k);
-endfor
-
-%Xの整形
-X = flipud(X);
-X = reshape(X(1:n),M,11);
-X = fliplr(X);
-
-disp("Xの値");
-disp(X);
+%%LY=psaiを満たすYを求める
+%%Yをn×1のゼロ行列として初期化
+%Y = zeros(n,1);
+%
+%%Yを求める
+%Y(1,1) = Y(1,1) .+ psai(1,1);
+%for k = 2:n
+%	Y(k,1) = psai(k,1);
+%	for i = 1:k-1
+%		Y(k,1) = Y(k,1) .- L(k,i).*Y(i,1);
+%	endfor
+%endfor
+%
+%%UX=Yを満たすXを求める
+%%Xをn×1のゼロ行列として初期化
+%X = zeros(n,1);
+%
+%%Xを求める
+%X(n,1) = Y(n,1) ./ U(n,n);
+%for k = 1:n-1
+%	X(n - k,1) = Y(n - k,1);
+%	for i = 0:k-1
+%		X(n - k,1) = X(n - k,1) - U(n - k,n - i).*X(n - i,1);
+%	endfor
+%	X(n - k,1) = X(n - k,1)./U(n - k,n - k);
+%endfor
+%
+%%Xの整形
+%X = flipud(X);
+%X = reshape(X(1:n),M,11);
+%X = fliplr(X);
+%
+%disp("Xの値");
+%disp(X);
