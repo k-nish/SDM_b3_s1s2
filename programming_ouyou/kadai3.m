@@ -4,10 +4,11 @@ L = 11;
 n = M * L;
 I = eye(n);
 
-%C_p,lambda,dt,it,alpha_aを設定
+%C_p,lambda,dt,it,a(温度を取る点の座標)を設定
 C_p = 129 * 19320;
 lambda = 319;
-dt = 0.01;
+dt = 0.5;
+a = (n+1)/2;
 
 %Qを計算する
 %x,y両方向の差分逆数二乗和の二倍をa_1とし、またx,y方向の差分逆数二乗をそれぞれa_2,a_3とする
@@ -122,19 +123,36 @@ endfor
 Q = I - lambda * dt / C_p * p;
 
 %lambda * dt * psai / C_pを計算し、Rとする
-R = lambda * dt * psai / C_p
+R = lambda * dt * psai / C_p;
 
-%QをLU分解する
-for i = 1:n
-	for j = i:n
-		U(i,j) = p(i,j);
-		L(j,i) = p(j,i)./p(i,i);
-	endfor
-	for j = i+1:n
-		for k = i+1:n
-			%p(j,k) = p(j,k) - p(i,k) .* L(j,i);
-		endfor
-	endfor
+%面全体の温度分布を配列に持つ行列をt_newとする
+t_new = zeros(n,1);
+
+%ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
+k=1500;
+T = zeros(k,1);
+
+for i=1:k
+	t_old = t_new;
+	S = t_old -R;
+	t_new = inv(Q) * S;
+	T(i+1,1) = t_new(a,1);
 endfor
 
+disp(T);
+
+plot(T);
+
+%%QをLU分解する
+%for i = 1:n
+%	for j = i:n
+%		U(i,j) = p(i,j);
+%		L(j,i) = p(j,i)./p(i,i);
+%	endfor
+%	for j = i+1:n
+%		for k = i+1:n
+%			%p(j,k) = p(j,k) - p(i,k) .* L(j,i);
+%		endfor
+%	endfor
+%endfor
 
