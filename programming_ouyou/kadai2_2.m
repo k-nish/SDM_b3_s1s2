@@ -121,8 +121,7 @@ X = flipud(X);
 X = reshape(X(1:n),M,11);
 X = fliplr(X);
 
-%[C,h] = contour3(X);
-%h.fill = 'on';
-contour3(X);
-set(0,"Fill","on");
-disp(C);
+%contour3(X);
+surf(X);
+%meshc(X);
+%view(20,30);
