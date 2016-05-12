@@ -123,18 +123,18 @@ endfor
 Q2 = zeros(n);
 for i=1:L
 	for j=1:M
-		alpha = (j - 1) * L + (i - 1);
+		alpha = (j - 1) * L + (i - 1) + 1;
 		r_alpha = [i * dx ; j * dy ; 0];
 
 		for k=1:L
 			for l=1:M
-				beta = (l - 1) * L + (k - 1);
+				beeta = (l - 1) * L + (k - 1) + 1;
 				r_beta = [k * dx; l * dy; d/2];
 
 				%r_alphaとr_betaの距離の3乗を計算し、rとする
 				r = sum((r_alpha .- r_beta).^2)^(3/2);
 
-				Q2(alpha+1,beta+1) = -mu * d * dx * dy / (4 * pi * r);
+				Q2(alpha,beeta) = -mu * d * dx * dy / (4 * pi * r);
 			endfor
 		endfor
 	endfor
@@ -149,7 +149,7 @@ M_new = zeros(n,1);
 
 %ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
 k=10;
-T = zeros(k,2);
+T = zeros(k+1,2);
 
 %Mを計算し、A点付近の電流密度を行列Tに格納する
 for i=1:k
@@ -160,7 +160,7 @@ for i=1:k
 	S1 = (Q1 - Q2)/dt - P2;
 	S2 = (Q1 - Q2)/dt;
 	M_old = M_new;
-	M_new = inv(S1) * (S2 * M_old - R);
+	M_new = inv(S1) * (S2 * M_old .- R);
 	J_x = (M_new(32,1) - M_new(30,1)) / (2 * dx);
 	J_y = -(M_new(41,1) - M_new(21,1)) / (2 * dy);
 	T(i + 1,1) = J_x;
