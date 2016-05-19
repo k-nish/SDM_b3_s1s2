@@ -133,7 +133,7 @@ R = lambda * dt * psai / C_p;
 t_new = zeros(n,1);
 
 %ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
-k=100000;
+k=10;
 T = zeros(k,1);
 
 for i=1:k

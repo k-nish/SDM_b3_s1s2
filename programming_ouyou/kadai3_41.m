@@ -5,10 +5,10 @@ n = M * L;
 I = eye(n);
 
 %C_p,lambda,dt,it,a(温度を取る点の座標)を設定
-C_p = 385 * 8960;
-lambda = 403;
+C_p = 444 * 7874;
+lambda = 83.5;
 dt = 5;
-a = (n+1)/2;
+% a = (n+1)/2;
 
 %Qを計算する
 %dx,dyを計算
@@ -133,30 +133,22 @@ R = lambda * dt * psai / C_p;
 t_new = zeros(n,1);
 
 %ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
-k=10;
+k=1;
 T = zeros(k,1);
 
 for i=1:k
 	t_old = t_new;
 	S = t_old -R;
 	t_new = inv(Q) * S;
-	T(i+1,1) = t_new(a,1);
+	% T(i+1,1) = t_new(a,1);
 endfor
 
-disp(T);
+% disp(T);
+%t_newの整形
+t_new = flipud(t_new);
+t_new = reshape(t_new(1:n),M,11);
+t_new = fliplr(t_new);
 
-plot(T);
-
-%%QをLU分解する
-%for i = 1:n
-%	for j = i:n
-%		U(i,j) = p(i,j);
-%		L(j,i) = p(j,i)./p(i,i);
-%	endfor
-%	for j = i+1:n
-%		for k = i+1:n
-%			%p(j,k) = p(j,k) - p(i,k) .* L(j,i);
-%		endfor
-%	endfor
-%endfor
-
+%温度分布の表示
+surf(t_new);
+% plot(T);
