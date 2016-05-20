@@ -1,4 +1,4 @@
-clear all;
+% clear all;
 %初期設定M,L,n,I
 M = 11;
 L = 11;
@@ -10,7 +10,7 @@ eta = 2 * 10^(-8); %etaは電気抵抗率
 mu = 4 * pi * 10^(-7); %muは真空の透磁率
 dt = 0.0025; %dtはシミュレーションの時間間隔
 d = 0.01; %dは銅板の厚さ
-f = 1; %fは周波数
+f = 5; %fは周波数
 
 %A点の座標を求めるためのaを設定
 a = (((n + 1) / 2) + 1)/2;
@@ -149,11 +149,12 @@ P2 = eta * p;
 M_new = zeros(n,1);
 
 %ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
-k=128; %課題1をやるためには600にすればよい
+k=600; %課題1をやるためには600にすればよい
 T = zeros(k+1,2);
 
 %S1 * M_new = S2 * M_old - RとなるようにS1,S2を設定する
 	S1 = (Q1 - Q2)/dt - P2;
+	% invS1 = inv(S1);
 	S2 = (Q1 - Q2)/dt;
 
 %Mを計算し、A点付近の電流密度を行列Tに格納する
@@ -163,53 +164,44 @@ for i=1:k
 
 	M_old = M_new;
 	M_new = inv(S1) * (S2 * M_old .- R);
-	J_x = (M_new(42,1) - M_new(20,1)) / (2*dy);
-	J_y = -(M_new(32,1) - M_new(30,1)) / (2*dx);
+	M_new2 = flipud(M_new);
+	M_new2 = reshape(M_new2(1:n),M,11);
+	M_new2 = fliplr(M_new2);
+	J_x = (M_new2(3,8) - M_new2(3,10)) / (2*dy);
+	J_y = -(M_new2(4,9) - M_new2(2,9)) / (2*dx);
 	T(i + 1,1) = J_x;
 	T(i + 1,2) = J_y;
 endfor
-% disp(T); %課題1ではここのコメントアウトを外す
-% plot(T); %課題1ではここのコメントアウトを外す
+disp(T); %課題1ではここのコメントアウトを外す
+plot(T); %課題1ではここのコメントアウトを外す
 
-%M_newの整形
-M_new = flipud(M_new);
-M_new = reshape(M_new(1:n),M,11);
-M_new = fliplr(M_new);
+%以下課題2用のコード
+% %M_newの整形
+% M_new = flipud(M_new);
+% M_new = reshape(M_new(1:n),M,11);
+% M_new = fliplr(M_new);
 
-% disp(M_new);
+% % disp(M_new);
 
-JX = [];
-JY = [];
-for s=1:9
-	for t=1:9
-		jx = (M_new(s+1,10-t) - M_new(s+1,12-t)) / (2*dy);
-		jy = -(M_new(s+2,11-t) - M_new(s,11-t)) / (2*dx);
-		JX = [JX ; jx(1) * 3E-9];
-		JY = [JY ; jy(1) * 3E-9];
-		%ベクトルのプロット
-		q = (s-1) * 9 + t;
-		hold on;
-		x = (s + 1) * dx;
-		y = (t + 1) * dy;
-		q
-		x
-		y
-		JX(q)
-		JY(q)
-		quiver(x,y,JX(q),JY(q));
-	endfor
-endfor
+% JX = [];
+% JY = [];
+% for s=1:9
+% 	for t=1:9
+% 		jx = (M_new(s+1,10-t) - M_new(s+1,12-t)) / (2*dy);
+% 		jy = -(M_new(s+2,11-t) - M_new(s,11-t)) / (2*dx);
+% 		JX = [JX ; jx(1) * 1E-9];
+% 		JY = [JY ; jy(1) * 1E-9];
+% 		%ベクトルのプロット
+% 		q = (s-1) * 9 + t;
+% 		hold on;
+% 		x = (s + 1) * dx;
+% 		y = (t + 1) * dy;
+% 		q
+% 		x
+% 		y
+% 		JX(q)
+% 		JY(q)
+% 		quiver(x,y,JX(q),JY(q));
+% 	endfor
+% endfor
 % hold off;
-% [x,y] = meshgrid(dx*2:dx:0.1-dx*2,dy*2:dy:0.1-dy*2);
-% x2 = x / dx - 1;
-% y2 = y / dy - 1;
-% q = (x2 -1) * 9 + y2;
-% u = JX(q);
-% v = JY(q);
-% figure
-% quiver(x,y,u,v)
-
-
-% disp(JX);
-% disp("JYは下");
-% disp(JY);
