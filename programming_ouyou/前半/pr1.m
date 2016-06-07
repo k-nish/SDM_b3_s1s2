@@ -9,6 +9,14 @@
 %r_alpha = [i * dx ; j * dy ; 0];
 %disp(r_alpha);
 
-r_alpha = [1;2;3];
-r_beta = [2;4;6];
-r = sum((r_alpha .- r_beta).^2)^(3/2)
+% r_alpha = [1;2;3];
+% r_beta = [2;4;6];
+% r = sum((r_alpha .- r_beta).^2)^(3/2)
+
+A = [1,2,3; 4,5,6; 7,8,9];
+
+B = zeros(1,5);
+for i=1:3
+	B = [B; 0,A(i,:),0];
+endfor
+B = [B; zeros(1,5)]

@@ -149,7 +149,7 @@ P2 = eta * p;
 M_new = zeros(n,1);
 
 %ループ処理を行う回数をkとし、温度変化の値を持つ行列をT(k×1)とする
-k=128; %課題1をやるためには600にすればよい
+k=600; %課題1をやるためには600にすればよい
 T = zeros(k+1,2);
 
 %S1 * M_new = S2 * M_old - RとなるようにS1,S2を設定する
@@ -199,17 +199,3 @@ for s=1:9
 		quiver(x,y,JX(q),JY(q));
 	endfor
 endfor
-% hold off;
-% [x,y] = meshgrid(dx*2:dx:0.1-dx*2,dy*2:dy:0.1-dy*2);
-% x2 = x / dx - 1;
-% y2 = y / dy - 1;
-% q = (x2 -1) * 9 + y2;
-% u = JX(q);
-% v = JY(q);
-% figure
-% quiver(x,y,u,v)
-
-
-% disp(JX);
-% disp("JYは下");
-% disp(JY);
